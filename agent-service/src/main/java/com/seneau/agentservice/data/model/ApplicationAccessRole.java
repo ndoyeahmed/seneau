@@ -2,13 +2,11 @@ package com.seneau.agentservice.data.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,6 +22,6 @@ public class ApplicationAccessRole extends AbstractEntity{
     @ManyToOne
     @JoinColumn(name = "role", referencedColumnName = "id")
     private Role role;
-    @OneToMany
-    private List<Privilege> privileges;
+    @OneToMany(mappedBy = "applicationAccessRole")
+    private List<ApplicationAccessRolePrivilege> applicationAccessRolePrivileges = new ArrayList<>();
 }

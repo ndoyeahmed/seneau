@@ -1,6 +1,8 @@
 package com.seneau.agentservice.service.role;
 
 import com.seneau.agentservice.web.dto.*;
+import com.seneau.agentservice.web.dto.request.role.RolePrivilegeRequestDto;
+import com.seneau.agentservice.web.dto.response.RolePrivilegeResponseDto;
 import com.seneau.communs.data.dto.role.RoleDto;
 
 import java.util.List;
@@ -13,4 +15,5 @@ public interface RoleService {
     List<RoleFonctionnelDto> getListRoleFonctionnelByRoleId(Long id);
     RoleHFDto getListRoleHierarchiqueFonctionnelByRoleId(Long id);
     RoleApplicationAccessDto getRoleApplicationAccessList(Long roleId);
+    RolePrivilegeResponseDto createRoleWithPrivilege(RolePrivilegeRequestDto roleRequestDto);
 }

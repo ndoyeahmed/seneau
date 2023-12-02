@@ -1,13 +1,12 @@
 package com.seneau.agentservice.service.role.implementation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seneau.agentservice.data.model.Agent;
-import com.seneau.agentservice.data.model.Application;
-import com.seneau.agentservice.data.model.ApplicationAccessAgent;
-import com.seneau.agentservice.data.model.Role;
+import com.seneau.agentservice.data.model.*;
 import com.seneau.agentservice.data.repository.*;
 import com.seneau.agentservice.service.role.RoleService;
 import com.seneau.agentservice.web.dto.*;
+import com.seneau.agentservice.web.dto.request.role.RolePrivilegeRequestDto;
+import com.seneau.agentservice.web.dto.response.RolePrivilegeResponseDto;
 import com.seneau.communs.web.exceptions.EntityNotFoundException;
 import com.seneau.communs.data.dto.role.RoleDto;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +21,8 @@ public class RoleServiceImplement implements RoleService {
     private final RoleRepository roleRepository;
     private final ApplicationRepository applicationRepository;
     private final ApplicationAccessAgentRepository applicationAccessAgentRepository;
+    private final ApplicationAccessRoleRepository applicationAccessRoleRepository;
+    private final ApplicationAccessRolePrivilegeRepository applicationAccessRolePrivilegeRepository;
     private final AgentRepository agentRepository;
     private final ObjectMapper objectMapper;
     @Override
@@ -112,6 +113,26 @@ public class RoleServiceImplement implements RoleService {
         if (role == null) throw new EntityNotFoundException("role not found with the provided id");
         return objectMapper.convertValue(role, RoleApplicationAccessDto.class);
     }
+
+    @Override
+    public RolePrivilegeResponseDto createRoleWithPrivilege(RolePrivilegeRequestDto roleRequestDto) {
+        Role role = objectMapper.convertValue(roleRequestDto, Role.class);
+        roleRepository.save(role);
+        if (roleRequestDto != null) {
+            List<ApplicationAccessRole> applicationAccessRoles = roleRequestDto.getApplicationAccessRoles()
+                    .stream().map(af -> objectMapper.convertValue(af, ApplicationAccessRole.class)).toList();
+            applicationAccessRoles.forEach(af -> af.setRole(role));
+            applicationAccessRoleRepository.saveAll(applicationAccessRoles);
+
+            for (ApplicationAccessRole accessRole : applicationAccessRoles) {
+                List<ApplicationAccessRolePrivilege> accessRolePrivileges = accessRole.getApplicationAccessRolePrivileges();
+                accessRolePrivileges.forEach(af -> af.setApplicationAccessRole(accessRole));
+                applicationAccessRolePrivilegeRepository.saveAll(accessRolePrivileges);
+            }
+        }
+        return objectMapper.convertValue(role, RolePrivilegeResponseDto.class);
+    }
+
 
     private List<RoleAgentDto> getInitialRole(Long id) {
         List<RoleAgentDto> roleAgentDtos = new ArrayList<>();
