@@ -5,6 +5,7 @@ import com.seneau.agentservice.data.repository.RoleRepository;
 import com.seneau.agentservice.service.role.RoleService;
 import com.seneau.agentservice.web.controller.role.RoleController;
 import com.seneau.agentservice.web.dto.*;
+import com.seneau.agentservice.web.dto.request.role.ApplicationAccessRoleDto;
 import com.seneau.agentservice.web.dto.request.role.RolePrivilegeRequestDto;
 import com.seneau.agentservice.web.dto.response.RolePrivilegeResponseDto;
 import com.seneau.communs.core.GenericController;
@@ -65,5 +66,10 @@ public class RoleControllerImplement extends GenericController<Role, RolePrivile
     @Override
     public RolePrivilegeResponseDto createRoleWithPrivilege(RolePrivilegeRequestDto rolePrivilegeRequestDto) {
         return roleService.createRoleWithPrivilege(rolePrivilegeRequestDto);
+    }
+
+    @Override
+    public RolePrivilegeResponseDto deletePrivilegeFromRole(Long roleId, List<ApplicationAccessRoleDto> applicationAccessRoles) {
+        return roleService.removePrivilegeFromRole(roleId, applicationAccessRoles);
     }
 }

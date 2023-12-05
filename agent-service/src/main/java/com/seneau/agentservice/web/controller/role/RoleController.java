@@ -1,17 +1,12 @@
 package com.seneau.agentservice.web.controller.role;
 
 import com.seneau.agentservice.web.dto.*;
-import com.seneau.agentservice.web.dto.request.parametrage.FonctionRequestDto;
+import com.seneau.agentservice.web.dto.request.role.ApplicationAccessRoleDto;
 import com.seneau.agentservice.web.dto.request.role.RolePrivilegeRequestDto;
-import com.seneau.agentservice.web.dto.response.FonctionResponseDto;
 import com.seneau.agentservice.web.dto.response.RolePrivilegeResponseDto;
-import com.seneau.communs.data.dto.role.RoleDto;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,7 +26,8 @@ public interface RoleController {
     ResponseEntity<RoleApplicationAccessDto> getRoleApplicationAccessList(@PathVariable Long roleId);
     @PostMapping("/application-access")
     ResponseEntity<ApplicationAccessDto> createApplicationAccess(@Valid @RequestBody ApplicationAccessRequestDto applicationAccessRequestDto);
-
     @PostMapping("/privilege")
     RolePrivilegeResponseDto createRoleWithPrivilege(@RequestBody RolePrivilegeRequestDto rolePrivilegeRequestDto);
+    @DeleteMapping("/privileges/{roleId}")
+    RolePrivilegeResponseDto deletePrivilegeFromRole(@PathVariable Long roleId, @RequestBody List<ApplicationAccessRoleDto> applicationAccessRoles);
 }

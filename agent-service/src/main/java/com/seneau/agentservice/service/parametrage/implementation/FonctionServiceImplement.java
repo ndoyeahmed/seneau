@@ -9,13 +9,14 @@ import com.seneau.agentservice.data.repository.ApplicationAccessFonctionReposito
 import com.seneau.agentservice.data.repository.FonctionRepository;
 import com.seneau.agentservice.service.parametrage.FonctionService;
 import com.seneau.agentservice.web.dto.request.parametrage.FonctionRequestDto;
+import com.seneau.agentservice.web.dto.request.role.ApplicationAccessFonctionDto;
 import com.seneau.agentservice.web.dto.response.FonctionResponseDto;
+import com.seneau.communs.web.exceptions.BadRequestException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -43,5 +44,23 @@ public class FonctionServiceImplement implements FonctionService {
             }
         }
         return objectMapper.convertValue(fonction, FonctionResponseDto.class);
+    }
+
+    @Override
+    public FonctionResponseDto removeFonctionPrivilege(Long fonctionId, List<ApplicationAccessFonctionDto> applicationAccessFonctionDtos) {
+        if (fonctionId == null) throw new BadRequestException("fonction not found with the provided id");
+        for (var applicationAccessFonction : applicationAccessFonctionDtos) {
+            List<ApplicationAccessFonctionPrivilege> accessFonctionPrivileges = applicationAccessFonctionPrivilegeRepository
+                    .findAllByFonctionIdAndApplication(fonctionId, applicationAccessFonction.getApplication().getId());
+            for (var accessFonctionPrivilege : accessFonctionPrivileges) {
+                for (var privilegeDto : applicationAccessFonction.getApplicationAccessFonctionPrivileges()) {
+                    if (accessFonctionPrivilege.getPrivilege().getId().equals(privilegeDto.getPrivilege().getId())) {
+                        applicationAccessFonctionPrivilegeRepository.delete(accessFonctionPrivilege);
+                        break;
+                    }
+                }
+            }
+        }
+        return objectMapper.convertValue(fonctionRepository.findById(fonctionId).orElse(null), FonctionResponseDto.class);
     }
 }

@@ -5,8 +5,10 @@ import com.seneau.agentservice.data.model.*;
 import com.seneau.agentservice.data.repository.*;
 import com.seneau.agentservice.service.role.RoleService;
 import com.seneau.agentservice.web.dto.*;
+import com.seneau.agentservice.web.dto.request.role.ApplicationAccessRoleDto;
 import com.seneau.agentservice.web.dto.request.role.RolePrivilegeRequestDto;
 import com.seneau.agentservice.web.dto.response.RolePrivilegeResponseDto;
+import com.seneau.communs.web.exceptions.BadRequestException;
 import com.seneau.communs.web.exceptions.EntityNotFoundException;
 import com.seneau.communs.data.dto.role.RoleDto;
 import lombok.RequiredArgsConstructor;
@@ -131,6 +133,23 @@ public class RoleServiceImplement implements RoleService {
             }
         }
         return objectMapper.convertValue(role, RolePrivilegeResponseDto.class);
+    }
+
+    @Override
+    public RolePrivilegeResponseDto removePrivilegeFromRole(Long roleId, List<ApplicationAccessRoleDto> applicationAccessRoles) {
+        if (roleId == null) throw new BadRequestException("role not found with the provided id");
+        for (var applicationAccessRole : applicationAccessRoles) {
+            List<ApplicationAccessRolePrivilege> accessRolePrivileges = applicationAccessRolePrivilegeRepository
+                    .findAllByRoleAndApplication(roleId, applicationAccessRole.getApplication().getId());
+            for (var accessRolePrivilege : accessRolePrivileges) {
+                for (var privilegeDto : applicationAccessRole.getApplicationAccessRolePrivileges()) {
+                    if (accessRolePrivilege.getPrivilege().getId().equals(privilegeDto.getPrivilege().getId())) {
+                        applicationAccessRolePrivilegeRepository.delete(accessRolePrivilege);
+                    }
+                }
+            }
+        }
+        return objectMapper.convertValue(roleRepository.findById(roleId).orElse(null), RolePrivilegeResponseDto.class);
     }
 
 

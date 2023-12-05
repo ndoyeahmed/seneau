@@ -5,10 +5,13 @@ import com.seneau.agentservice.data.repository.FonctionRepository;
 import com.seneau.agentservice.service.parametrage.FonctionService;
 import com.seneau.agentservice.web.controller.parametrage.FonctionController;
 import com.seneau.agentservice.web.dto.request.parametrage.FonctionRequestDto;
+import com.seneau.agentservice.web.dto.request.role.ApplicationAccessFonctionDto;
 import com.seneau.agentservice.web.dto.response.FonctionResponseDto;
 import com.seneau.communs.core.GenericController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController
@@ -23,6 +26,11 @@ public class FonctionControllerImplement extends GenericController<Fonction, Fon
     @Override
     public FonctionResponseDto createFonctionWithPrivilege(FonctionRequestDto fonctionRequestDto) {
         return fonctionService.createFonctionWithPrivilege(fonctionRequestDto);
+    }
+
+    @Override
+    public FonctionResponseDto removeFonctionPrivilege(Long fonctionId, List<ApplicationAccessFonctionDto> applicationAccessFonctionDtos) {
+        return null;
     }
 
 }

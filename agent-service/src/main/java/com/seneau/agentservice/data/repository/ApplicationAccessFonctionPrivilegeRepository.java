@@ -10,4 +10,6 @@ import java.util.List;
 public interface ApplicationAccessFonctionPrivilegeRepository extends JpaRepository<ApplicationAccessFonctionPrivilege, Long> {
     @Query("SELECT ac FROM ApplicationAccessFonctionPrivilege ac WHERE ac.active=true AND ac.applicationAccessFonction.fonction.id=:fonctionId")
     List<ApplicationAccessFonctionPrivilege> findAllByFonctionId(@Param("fonctionId") Long fonctionId);
+    @Query("SELECT ac FROM ApplicationAccessFonctionPrivilege ac WHERE ac.active=true AND ac.applicationAccessFonction.fonction.id=:fonctionId AND ac.applicationAccessFonction.application=:applicationId")
+    List<ApplicationAccessFonctionPrivilege> findAllByFonctionIdAndApplication(@Param("fonctionId") Long fonctionId, @Param("applicationId") Long applicationId);
 }
