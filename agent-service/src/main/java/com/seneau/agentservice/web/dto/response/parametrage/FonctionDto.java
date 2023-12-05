@@ -1,21 +1,20 @@
-package com.seneau.agentservice.web.dto.response;
+package com.seneau.agentservice.web.dto.response.parametrage;
 
 import com.seneau.agentservice.web.dto.request.role.ApplicationAccessFonctionDto;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FonctionResponseDto {
+public class FonctionDto {
     private Long id;
+    private boolean active = true;
     private String name;
     private String code;
-    private boolean active;
     List<ApplicationAccessFonctionDto> applicationAccessFonctions;
 }

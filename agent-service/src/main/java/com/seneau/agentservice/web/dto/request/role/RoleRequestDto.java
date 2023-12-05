@@ -1,4 +1,4 @@
-package com.seneau.agentservice.web.dto;
+package com.seneau.agentservice.web.dto.request.role;
 
 import lombok.Getter;
 import lombok.Setter;

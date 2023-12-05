@@ -2,9 +2,9 @@ package com.seneau.agentservice.web.controller.agent.implementation;
 
 import com.seneau.agentservice.service.agent.AgentService;
 import com.seneau.agentservice.web.controller.agent.AgentController;
-import com.seneau.agentservice.web.dto.AgentRequest;
-import com.seneau.agentservice.web.dto.AgentResponse;
-import com.seneau.agentservice.web.dto.CvDto;
+import com.seneau.agentservice.web.dto.request.agent.AgentRequest;
+import com.seneau.agentservice.web.dto.response.agent.AgentResponse;
+import com.seneau.agentservice.web.dto.response.agent.CvDto;
 import com.seneau.agentservice.web.dto.FilterDto;
 import com.seneau.communs.data.dto.agent.AgentResponseDto;
 import lombok.RequiredArgsConstructor;

@@ -10,7 +10,7 @@ import com.seneau.agentservice.data.repository.FonctionRepository;
 import com.seneau.agentservice.service.parametrage.FonctionService;
 import com.seneau.agentservice.web.dto.request.parametrage.FonctionRequestDto;
 import com.seneau.agentservice.web.dto.request.role.ApplicationAccessFonctionDto;
-import com.seneau.agentservice.web.dto.response.FonctionResponseDto;
+import com.seneau.agentservice.web.dto.response.parametrage.FonctionResponseDto;
 import com.seneau.communs.web.exceptions.BadRequestException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

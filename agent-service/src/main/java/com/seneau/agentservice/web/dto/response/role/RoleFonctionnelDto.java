@@ -1,14 +1,13 @@
-package com.seneau.agentservice.web.dto;
+package com.seneau.agentservice.web.dto.response.role;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class RoleAgentDto {
+public class RoleFonctionnelDto {
     private Long id;
     private String name;
     private String code;
-    private RoleHierarchiqueAgentDto rolesHierarchique;
     private RoleHierarchiqueAgentDto rolesFonctionnel;
 }

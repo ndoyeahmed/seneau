@@ -1,9 +1,10 @@
 package com.seneau.agentservice.web.controller.role;
 
-import com.seneau.agentservice.web.dto.*;
 import com.seneau.agentservice.web.dto.request.role.ApplicationAccessRoleDto;
 import com.seneau.agentservice.web.dto.request.role.RolePrivilegeRequestDto;
-import com.seneau.agentservice.web.dto.response.RolePrivilegeResponseDto;
+import com.seneau.agentservice.web.dto.request.application.ApplicationAccessDto;
+import com.seneau.agentservice.web.dto.request.application.ApplicationAccessRequestDto;
+import com.seneau.agentservice.web.dto.response.role.*;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

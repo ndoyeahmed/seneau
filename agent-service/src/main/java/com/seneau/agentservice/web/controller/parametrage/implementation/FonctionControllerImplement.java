@@ -6,7 +6,7 @@ import com.seneau.agentservice.service.parametrage.FonctionService;
 import com.seneau.agentservice.web.controller.parametrage.FonctionController;
 import com.seneau.agentservice.web.dto.request.parametrage.FonctionRequestDto;
 import com.seneau.agentservice.web.dto.request.role.ApplicationAccessFonctionDto;
-import com.seneau.agentservice.web.dto.response.FonctionResponseDto;
+import com.seneau.agentservice.web.dto.response.parametrage.FonctionResponseDto;
 import com.seneau.communs.core.GenericController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

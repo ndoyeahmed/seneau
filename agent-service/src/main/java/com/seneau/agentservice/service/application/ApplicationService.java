@@ -1,7 +1,7 @@
 package com.seneau.agentservice.service.application;
 
 import com.seneau.agentservice.web.dto.request.application.ApplicationRequest;
-import com.seneau.agentservice.web.dto.response.ApplicationResponse;
+import com.seneau.agentservice.web.dto.response.role.ApplicationResponse;
 
 
 public interface ApplicationService {

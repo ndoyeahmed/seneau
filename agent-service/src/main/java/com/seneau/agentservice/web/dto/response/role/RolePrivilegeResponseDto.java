@@ -1,4 +1,4 @@
-package com.seneau.agentservice.web.dto.response;
+package com.seneau.agentservice.web.dto.response.role;
 
 import com.seneau.agentservice.web.dto.request.role.ApplicationAccessRoleDto;
 import com.seneau.communs.data.dto.role.RoleDto;

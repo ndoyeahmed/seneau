@@ -1,5 +1,6 @@
-package com.seneau.agentservice.web.dto;
+package com.seneau.agentservice.web.dto.response.agent;
 
+import com.seneau.agentservice.web.dto.response.parametrage.ProjetDto;
 import lombok.Getter;
 import lombok.Setter;
 

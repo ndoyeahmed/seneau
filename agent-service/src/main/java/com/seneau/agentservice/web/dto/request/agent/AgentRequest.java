@@ -1,4 +1,4 @@
-package com.seneau.agentservice.web.dto;
+package com.seneau.agentservice.web.dto.request.agent;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

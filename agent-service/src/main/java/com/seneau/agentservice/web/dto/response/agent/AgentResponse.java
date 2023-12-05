@@ -1,5 +1,8 @@
-package com.seneau.agentservice.web.dto;
+package com.seneau.agentservice.web.dto.response.agent;
 
+import com.seneau.agentservice.web.dto.request.application.ApplicationAccessDto;
+import com.seneau.agentservice.web.dto.response.parametrage.*;
+import com.seneau.agentservice.web.dto.response.role.RoleAgentDto;
 import com.seneau.communs.data.dto.role.PrivilegeResponseDto;
 import lombok.Getter;
 import lombok.Setter;

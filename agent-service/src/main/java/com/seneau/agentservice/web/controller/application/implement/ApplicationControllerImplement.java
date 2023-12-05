@@ -3,7 +3,7 @@ package com.seneau.agentservice.web.controller.application.implement;
 import com.seneau.agentservice.service.application.ApplicationService;
 import com.seneau.agentservice.web.controller.application.ApplicationController;
 import com.seneau.agentservice.web.dto.request.application.ApplicationRequest;
-import com.seneau.agentservice.web.dto.response.ApplicationResponse;
+import com.seneau.agentservice.web.dto.response.role.ApplicationResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

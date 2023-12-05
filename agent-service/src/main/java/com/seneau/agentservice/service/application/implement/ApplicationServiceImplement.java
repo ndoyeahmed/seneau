@@ -5,7 +5,7 @@ import com.seneau.agentservice.data.model.Application;
 import com.seneau.agentservice.data.repository.ApplicationRepository;
 import com.seneau.agentservice.service.application.ApplicationService;
 import com.seneau.agentservice.web.dto.request.application.ApplicationRequest;
-import com.seneau.agentservice.web.dto.response.ApplicationResponse;
+import com.seneau.agentservice.web.dto.response.role.ApplicationResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

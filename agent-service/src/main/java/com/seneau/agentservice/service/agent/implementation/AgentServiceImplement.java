@@ -6,13 +6,15 @@ import com.seneau.agentservice.data.repository.*;
 import com.seneau.agentservice.service.agent.AgentService;
 
 import com.seneau.agentservice.web.dto.*;
+import com.seneau.agentservice.web.dto.request.agent.AgentRequest;
+import com.seneau.agentservice.web.dto.response.agent.AgentResponse;
+import com.seneau.agentservice.web.dto.response.agent.CvDto;
+import com.seneau.agentservice.web.dto.response.role.RoleAgentDto;
 import com.seneau.communs.core.UtilService;
-import com.seneau.communs.data.dto.PageListMapper;
 import com.seneau.communs.data.dto.role.PrivilegeResponseDto;
 import com.seneau.communs.web.exceptions.BadRequestException;
 import com.seneau.communs.web.exceptions.EntityNotFoundException;
 import com.seneau.communs.data.dto.agent.AgentResponseDto;
-import com.seneau.communs.service.UploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;

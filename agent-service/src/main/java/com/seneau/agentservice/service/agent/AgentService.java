@@ -1,8 +1,8 @@
 package com.seneau.agentservice.service.agent;
 
-import com.seneau.agentservice.web.dto.AgentRequest;
-import com.seneau.agentservice.web.dto.AgentResponse;
-import com.seneau.agentservice.web.dto.CvDto;
+import com.seneau.agentservice.web.dto.request.agent.AgentRequest;
+import com.seneau.agentservice.web.dto.response.agent.AgentResponse;
+import com.seneau.agentservice.web.dto.response.agent.CvDto;
 import com.seneau.agentservice.web.dto.FilterDto;
 import com.seneau.communs.data.dto.agent.AgentResponseDto;
 import com.seneau.communs.data.dto.role.PrivilegeResponseDto;

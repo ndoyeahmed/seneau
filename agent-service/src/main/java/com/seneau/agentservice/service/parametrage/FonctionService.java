@@ -2,7 +2,7 @@ package com.seneau.agentservice.service.parametrage;
 
 import com.seneau.agentservice.web.dto.request.parametrage.FonctionRequestDto;
 import com.seneau.agentservice.web.dto.request.role.ApplicationAccessFonctionDto;
-import com.seneau.agentservice.web.dto.response.FonctionResponseDto;
+import com.seneau.agentservice.web.dto.response.parametrage.FonctionResponseDto;
 
 import java.util.List;
 
