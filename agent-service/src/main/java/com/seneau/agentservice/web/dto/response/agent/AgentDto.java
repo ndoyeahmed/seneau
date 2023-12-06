@@ -1,5 +1,7 @@
 package com.seneau.agentservice.web.dto.response.agent;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.seneau.agentservice.data.model.Agent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,4 +21,5 @@ public class AgentDto {
     private Double taux;
     private String sexe;
     private Date dateNaissance;
+
 }
