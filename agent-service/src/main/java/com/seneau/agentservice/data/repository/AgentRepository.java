@@ -14,14 +14,19 @@ public interface AgentRepository extends JpaRepository<Agent, Long> {
     List<Agent> findByMatriculeInAndActiveTrue(List<Integer> matricules);
     Page<Agent> findAllByActiveTrue(Pageable pageable);
     Agent findByMatriculeAndActiveTrue(Integer matricule);
-    @Query("SELECT a FROM Agent a WHERE a.active=true AND a.chef.matricule=:matricule")
-    List<Agent> findAllByChefMatriculeAndActiveTrue(@Param("matricule") Integer matricule);
+    @Query("SELECT a FROM Agent a WHERE a.active=true AND a.chef.id=:id")
+    List<Agent> findAllByChefIdAndActiveTrue(@Param("id") Long id);
     @Query("SELECT a FROM Agent a WHERE a.active=true AND a.direction.chef.matricule=:matricule")
     List<Agent> findAllByDirecteurMatriculeAndActiveTrue(@Param("matricule") Integer matricule);
     @Query("SELECT a FROM Agent a WHERE a.active=true AND a.etablissement.id = :etablissementId")
     List<Agent> findAllByEtablissementAndActiveTrue(@Param("etablissementId") Long etablissementId);
     @Query("SELECT a FROM Agent a WHERE a.active=true AND a.direction.id = :directionId")
     List<Agent> findAllByDirectionAndActiveTrue(@Param("directionId") Long directionId);
+    @Query("SELECT a FROM Agent a WHERE a.active=true AND a.conge=false AND a.secteur.code = :code")
+    List<Agent> findAllByCodeSecteurAndCongeFalseAndActiveTrue(@Param("code") String code);
+
+    @Query("SELECT a FROM Agent a, Equipe e WHERE a.id=e.chef.id AND a.active=true AND a.conge=false AND a.secteur.code = :code")
+    List<Agent> findAllChefEquipeByCodeSecteurAndCongeFalseAndActiveTrue(@Param("code") String code);
     @Query("SELECT a FROM Agent a " +
             "WHERE (:active is null or a.active = :active) " +
             "AND (:etablissement is null or a.etablissement.name like %:etablissement%) " +

@@ -7,6 +7,7 @@ import com.seneau.agentservice.service.agent.AgentService;
 
 import com.seneau.agentservice.web.dto.*;
 import com.seneau.agentservice.web.dto.request.agent.AgentRequest;
+import com.seneau.agentservice.web.dto.response.agent.AgentDto;
 import com.seneau.agentservice.web.dto.response.agent.AgentResponse;
 import com.seneau.agentservice.web.dto.response.agent.CvDto;
 import com.seneau.agentservice.web.dto.response.role.RoleAgentDto;
@@ -116,8 +117,8 @@ public class AgentServiceImplement extends UtilService implements AgentService {
     }
 
     @Override
-    public List<AgentResponse> getAllAgentByMatriculeChef(Integer matricule) {
-        return agentRepository.findAllByChefMatriculeAndActiveTrue(matricule)
+    public List<AgentResponse> getAllAgentByIdChef(Long id) {
+        return agentRepository.findAllByChefIdAndActiveTrue(id)
                 .stream()
                 .map(this::agentToAgentResponse)
                 .toList();
@@ -136,6 +137,14 @@ public class AgentServiceImplement extends UtilService implements AgentService {
         return agentRepository.findAllByEtablissementAndActiveTrue(etablissementId)
                 .stream()
                 .map(this::agentToAgentResponse)
+                .toList();
+    }
+
+    @Override
+    public List<AgentDto> getAllAgentByCodeSecteurAndCongeFalse(String code) {
+        return agentRepository.findAllByCodeSecteurAndCongeFalseAndActiveTrue(code)
+                .stream()
+                .map(agent -> objectMapper.convertValue(agent, AgentDto.class))
                 .toList();
     }
 
@@ -225,6 +234,14 @@ public class AgentServiceImplement extends UtilService implements AgentService {
         BeanUtils.copyProperties(agent1, agent);
         agentRepository.save(agent);
         return agentToAgentResponse(agent);
+    }
+
+    @Override
+    public List<AgentDto> getAllChefEquipeByCodeSecteurAndCongeFalse(String code) {
+        return agentRepository.findAllChefEquipeByCodeSecteurAndCongeFalseAndActiveTrue(code)
+                .stream()
+                .map(agent -> objectMapper.convertValue(agent, AgentDto.class))
+                .toList();
     }
 
     @Override

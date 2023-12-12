@@ -1,6 +1,7 @@
 package com.seneau.agentservice.web.controller.agent;
 
 import com.seneau.agentservice.web.dto.request.agent.AgentRequest;
+import com.seneau.agentservice.web.dto.response.agent.AgentDto;
 import com.seneau.agentservice.web.dto.response.agent.AgentResponse;
 import com.seneau.agentservice.web.dto.response.agent.CvDto;
 import com.seneau.agentservice.web.dto.FilterDto;
@@ -30,8 +31,8 @@ public interface AgentController {
     ResponseEntity<AgentResponse> getAgentByMatricule(@PathVariable Integer matricule);
     @PostMapping("/listDtoAgentmatricules/all")
     ResponseEntity<List<AgentResponse>> getAllAgentByMatricules(@RequestBody List<Integer> matricules);
-    @GetMapping("/n1/{matriculeManager}")
-    ResponseEntity<List<AgentResponse>> getAgentsByMatriculeN1(@PathVariable Integer matriculeManager);
+    @GetMapping("/n1/{id}")
+    ResponseEntity<List<AgentResponse>> getAgentsByIdN1(@PathVariable Long id);
     @GetMapping("/directeur/{matriculeDirecteur}")
     ResponseEntity<List<AgentResponse>> getAgentsByMatriculeDirecteur(@PathVariable Integer matriculeDirecteur);
     @GetMapping("/etablissement/{etablissement}")
@@ -46,5 +47,9 @@ public interface AgentController {
     ResponseEntity<AgentResponseDto> getChefByIdAgent(@PathVariable Long id);
     @PostMapping("/cv")
     ResponseEntity<CvDto> createCv(@RequestBody CvDto cvDto);
+    @GetMapping("/secteur/code/{code}")
+    ResponseEntity<List<AgentDto>> getAllAgentBySecteurCode(@PathVariable String code);
+    @GetMapping("/chef/equipe/secteur/code/{code}")
+    ResponseEntity<List<AgentDto>> getAllChefEquipeBySecteurCode(@PathVariable String code);
 
 }

@@ -32,6 +32,8 @@ public class Agent extends AbstractEntity{
     private String sexe;
     private Date dateNaissance;
     private Date createdDate = new Date();
+    @Column(columnDefinition = "boolean default false")
+    private boolean conge=false;
     @OneToOne
     private Agent chef;
 

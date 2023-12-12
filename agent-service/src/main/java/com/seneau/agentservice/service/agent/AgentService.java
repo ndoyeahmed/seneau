@@ -1,6 +1,7 @@
 package com.seneau.agentservice.service.agent;
 
 import com.seneau.agentservice.web.dto.request.agent.AgentRequest;
+import com.seneau.agentservice.web.dto.response.agent.AgentDto;
 import com.seneau.agentservice.web.dto.response.agent.AgentResponse;
 import com.seneau.agentservice.web.dto.response.agent.CvDto;
 import com.seneau.agentservice.web.dto.FilterDto;
@@ -19,9 +20,10 @@ public interface AgentService {
     List<AgentResponse> getAllAgent();
     Map<String, Object> getAllAgentByFilterDto(FilterDto filterDto);
     List<AgentResponse> getAllAgentByMatriculeIn(List<Integer> matricules);
-    List<AgentResponse> getAllAgentByMatriculeChef(Integer matricule);
+    List<AgentResponse> getAllAgentByIdChef(Long id);
     List<AgentResponse> getAllAgentByMatriculeDirecteur(Integer matricule);
     List<AgentResponse> getAllAgentByEtablissement(Long etablissementId);
+    List<AgentDto> getAllAgentByCodeSecteurAndCongeFalse(String code);
     List<AgentResponse> getAllAgentByDirection(Long directionId);
     Map<String, Object> getAllAgent(int page, int size);
     AgentResponse getAgentByMatriculeAndActiveTrue(Integer matricule);
@@ -29,6 +31,7 @@ public interface AgentService {
     AgentResponseDto getAgentById(Long id);
     AgentResponseDto getChefByIdAgent(Long id);
     AgentResponse updateAgent(Long id, AgentRequest agentRequest);
+    List<AgentDto> getAllChefEquipeByCodeSecteurAndCongeFalse(String code);
     CvDto createCv(CvDto cvDto);
     List<PrivilegeResponseDto> getAllPrivilegeByAgentAndAgentRoleAndFonction(Long agent, Long role, Long fonction);
 }

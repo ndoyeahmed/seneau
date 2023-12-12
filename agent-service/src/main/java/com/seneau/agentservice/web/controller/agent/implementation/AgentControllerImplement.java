@@ -3,6 +3,7 @@ package com.seneau.agentservice.web.controller.agent.implementation;
 import com.seneau.agentservice.service.agent.AgentService;
 import com.seneau.agentservice.web.controller.agent.AgentController;
 import com.seneau.agentservice.web.dto.request.agent.AgentRequest;
+import com.seneau.agentservice.web.dto.response.agent.AgentDto;
 import com.seneau.agentservice.web.dto.response.agent.AgentResponse;
 import com.seneau.agentservice.web.dto.response.agent.CvDto;
 import com.seneau.agentservice.web.dto.FilterDto;
@@ -50,8 +51,8 @@ public class AgentControllerImplement implements AgentController {
     }
 
     @Override
-    public ResponseEntity<List<AgentResponse>> getAgentsByMatriculeN1(Integer matriculeManager) {
-        return ResponseEntity.ok(agentService.getAllAgentByMatriculeChef(matriculeManager));
+    public ResponseEntity<List<AgentResponse>> getAgentsByIdN1(Long id) {
+        return ResponseEntity.ok(agentService.getAllAgentByIdChef(id));
     }
 
     @Override
@@ -88,6 +89,16 @@ public class AgentControllerImplement implements AgentController {
     @Override
     public ResponseEntity<CvDto> createCv(CvDto cvDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(agentService.createCv(cvDto));
+    }
+
+    @Override
+    public ResponseEntity<List<AgentDto>> getAllAgentBySecteurCode(String code) {
+        return ResponseEntity.ok(agentService.getAllAgentByCodeSecteurAndCongeFalse(code));
+    }
+
+    @Override
+    public ResponseEntity<List<AgentDto>> getAllChefEquipeBySecteurCode(String code) {
+        return ResponseEntity.ok(agentService.getAllChefEquipeByCodeSecteurAndCongeFalse(code));
     }
 
     @Override
